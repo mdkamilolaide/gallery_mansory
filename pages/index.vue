@@ -57,6 +57,6 @@ const closeModal = () => {
 </script>
 <style>
 v-cloak {
-  display: none;
+  display: none !important;
 }
 </style>

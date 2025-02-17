@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import { ref } from "vue";
-import { debounce } from "lodash";
+import { debounce } from "lodash-es";
 
 export const useUnsplashStore = defineStore("unsplash", () => {
   const photos = ref([]);

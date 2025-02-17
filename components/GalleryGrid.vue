@@ -41,7 +41,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, ref, onMounted } from "vue";
 import GalleryItem from "./GalleryItem.vue";
 
 defineProps({
@@ -52,10 +52,15 @@ defineProps({
 
 const emit = defineEmits(["openModal"]);
 
-// Generate skeleton heights once for consistency
-const skeletonHeights = computed(() =>
-  Array.from({ length: 9 }, () => Math.floor(Math.random() * 9) + 10)
-);
+const skeletonHeights = ref([]);
+
+// Generate skeleton heights once on client mount
+onMounted(() => {
+  skeletonHeights.value = Array.from(
+    { length: 9 },
+    () => Math.floor(Math.random() * 9) + 10
+  );
+});
 </script>
 
 <style scoped>
