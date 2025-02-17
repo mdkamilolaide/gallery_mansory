@@ -28,7 +28,7 @@
         <!-- Close Button -->
         <button
           @click="closeModal"
-          class="absolute top-[-30px] right-[-50px] text-white rounded-full p-3 transition"
+          class="absolute top-2 right-2 md:top-[-30px] md:right-[-50px] text-white rounded-full p-3 transition bg-gray-800 sm:bg-transparent"
         >
           ✕
         </button>
