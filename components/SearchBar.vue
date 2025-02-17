@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { debounce } from "lodash";
+import { debounce } from "lodash-es";
 
 defineProps({
   modelValue: {
@@ -36,5 +36,5 @@ const emit = defineEmits(["update:modelValue"]);
 
 const debouncedHandleInput = debounce((event) => {
   emit("update:modelValue", event.target.value);
-}, 300); // Debouncing for 300ms
+}, 500); // Debouncing for 500ms
 </script>
