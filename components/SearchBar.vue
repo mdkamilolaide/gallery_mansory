@@ -2,9 +2,7 @@
   <div class="bg-custom-gray p-4 w-full h-[260px] flex items-center justify-center">
     <div class="bg-white rounded-lg shadow-md max-w-7xl w-full -mt-20">
       <div class="flex items-center p-3">
-        <!-- Font Awesome Search Icon -->
         <font-awesome-icon :icon="['fas', 'search']" class="text-gray-400 mr-3 w-4 h-4" />
-
         <!-- Input Field -->
         <input
           type="text"
@@ -34,7 +32,8 @@ defineProps({
 
 const emit = defineEmits(["update:modelValue"]);
 
+// Debouncing for 500ms
 const debouncedHandleInput = debounce((event) => {
   emit("update:modelValue", event.target.value);
-}, 500); // Debouncing for 500ms
+}, 500);
 </script>

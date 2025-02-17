@@ -48,7 +48,7 @@ export const useUnsplashStore = defineStore("unsplash", () => {
 
   // Debounced search query update
   const setSearchQuery = debounce((query) => {
-    searchQuery.value = query; // Update regardless of whether it's empty
+    searchQuery.value = query;
     fetchPhotos();
   }, 500);
 

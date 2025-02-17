@@ -48,12 +48,22 @@ const getGridRowSpan = (photo) => {
   right: 0;
   background: rgba(0, 0, 0, 0.5);
   color: white;
-  padding: 8px;
+  height: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   text-align: center;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
+
 .info-box h4 {
   font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.info-box p {
+  margin: 0;
 }
 </style>

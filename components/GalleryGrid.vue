@@ -86,9 +86,9 @@ onMounted(() => {
   margin: auto;
 }
 
-/* Ensure the search message spans full width */
+/* Search Message */
 .search-message {
-  grid-column: 1 / -1; /* Span across all columns */
+  grid-column: 1 / -1;
   width: 100%;
   display: block;
   padding: 0;
@@ -140,7 +140,7 @@ onMounted(() => {
 
 /* Skeleton Info Box (Footer) */
 .skeleton-info-box {
-  margin-top: auto; /* Pushes it to the bottom */
+  margin-top: auto;
   padding: 10px;
   background: rgba(255, 255, 255, 0.7);
   border-radius: 0 0 8px 8px;
