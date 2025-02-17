@@ -4,17 +4,17 @@ import { ref } from "vue";
 import { debounce } from "lodash-es";
 
 export const useUnsplashStore = defineStore("unsplash", () => {
-  const photos = ref([]);
-  const loading = ref(false);
-  const selectedImage = ref(null);
-  const searchQuery = ref("African"); // Default to "African"
-  const perPage = ref(8);
-  const orderBy = ref("latest");
+  const photos = ref([]); // Photos array
+  const loading = ref(false); // Loading state
+  const selectedImage = ref(null); // Selected Image for Modal
+  const searchQuery = ref(""); // Search Query
+  const perPage = ref(8); // 8 photos per page
+  const orderBy = ref("latest"); //Order By Latest
 
   const config = useRuntimeConfig();
   const ACCESS_KEY = config.public.unsplashAccessKey;
 
-  // Fetch photos from Unsplash
+  // Fetch photos from Unsplash Store
   const fetchPhotos = async () => {
     loading.value = true;
     try {
@@ -26,7 +26,8 @@ export const useUnsplashStore = defineStore("unsplash", () => {
       if (searchQuery.value.trim()) {
         params.query = searchQuery.value;
       } else {
-        params.query = "African"; // Reset to default category when empty
+        // Default to Latest African photos
+        params.query = "African";
       }
 
       const response = await axios.get(
