@@ -7,15 +7,11 @@
     >
       <div class="w-full flex items-center space-x-2">
         <span class="custom-blue font-bold text-2xl">
-          {{
-            loading
-              ? "Searching for"
-              : photos.length === 0
-              ? "No results found for"
-              : "Search Results for"
-          }}
+          {{ searchMessage }}
         </span>
-        <span class="custom-blue-light text-2xl">"{{ searchQuery }}"</span>
+        <span class="custom-blue-light text-2xl">{{
+          searchMessage ? `"${searchQuery}"` : ""
+        }}</span>
       </div>
     </h4>
 
@@ -46,15 +42,26 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import GalleryItem from "./GalleryItem.vue";
 
-defineProps({
+const props = defineProps({
   photos: { type: Array, required: true },
   loading: { type: Boolean, required: true },
   searchQuery: { type: String, required: true },
 });
 
+const searchMessage = computed(() => {
+  if (props.loading && props.searchQuery) {
+    return "Searching for";
+  } else if (props.searchQuery && props.photos.length === 0) {
+    return "No results found for";
+  } else if (props.searchQuery && props.photos.length > 0) {
+    return "Search Results for";
+  } else {
+    return "";
+  }
+});
 const emit = defineEmits(["openModal"]);
 
 const skeletonHeights = ref([]);
