@@ -78,10 +78,10 @@ onMounted(() => {
 <style scoped>
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-auto-rows: 18px;
-  gap: 16px;
-  max-width: 1200px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-auto-rows: 3px;
+  gap: 30px;
+  max-width: 1080px;
   width: 100%;
   margin: auto;
 }
