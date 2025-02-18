@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen bg-white-100 flex flex-col items-center" v-cloak>
+  <div class="min-h-screen bg-gray-100 flex flex-col items-center" v-cloak>
     <!-- Search Bar -->
-    <SearchBar v-model="searchQuery" @update:modelValue="handleSearch" />
+    <SearchBar v-model="searchQuery" @update:modelValue="setSearchQuery" />
 
     <!-- Gallery Grid -->
     <GalleryGrid
@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { useUnsplashStore } from "~/stores/unsplash";
+import { useUnsplashStore } from "~/stores/useUnplashStore";
 import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
 import SearchBar from "~/components/SearchBar.vue";
@@ -29,34 +29,22 @@ const { photos, loading, selectedImage, searchQuery } = storeToRefs(unsplashStor
 const { fetchPhotos, setSearchQuery } = unsplashStore;
 
 // Fetch photos on mount
-onMounted(() => {
-  fetchPhotos();
-});
+onMounted(fetchPhotos);
 
-// Debounced search input handler
-const handleSearch = (query) => {
-  setSearchQuery(query);
-};
-
-// Open modal and preload the full-size image
+// Open modal and preload full-size image
 const openModal = (photo) => {
   selectedImage.value = photo;
 
-  // Preload the full-size image
-  const img = new Image();
-  img.src = photo.urls.full;
-  img.onload = () => {
-    // Image is preloaded, no further action needed
-  };
+  // Preload full-size image asynchronously
+  new Image().src = photo.urls.full;
 };
 
 // Close modal
-const closeModal = () => {
-  selectedImage.value = null;
-};
+const closeModal = () => (selectedImage.value = null);
 </script>
-<style>
-v-cloak {
+
+<style scoped>
+[v-cloak] {
   display: none !important;
 }
 </style>
